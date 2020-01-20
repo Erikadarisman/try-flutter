@@ -75,12 +75,15 @@ class _MyHomePageState extends State<MyHomePage> {
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
         child: Container(
-            child: GestureDetector(
-              onLongPress: (){
-                print('Long press');
-              },
-              child: new Image(image: AssetImage("assets/image/download.jpeg")),
-            )
+          child: GestureDetector(
+            onLongPress: () {
+              print('Long press');
+            },
+            onLongPressUp: () {
+              print('Long press relesed');
+            },
+            child: new Image(image: AssetImage("assets/image/download.jpeg")),
+          )
         ),
       ),
       floatingActionButton: FloatingActionButton(
