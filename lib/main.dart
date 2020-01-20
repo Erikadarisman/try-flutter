@@ -76,8 +76,8 @@ class _MyHomePageState extends State<MyHomePage> {
         // in the middle of the parent.
         child: Container(
             child: GestureDetector(
-              onDoubleTap: (){
-                print('Double tapped');
+              onLongPress: (){
+                print('Long press');
               },
               child: new Image(image: AssetImage("assets/image/download.jpeg")),
             )
