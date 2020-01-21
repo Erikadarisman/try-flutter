@@ -76,11 +76,13 @@ class _MyHomePageState extends State<MyHomePage> {
         // in the middle of the parent.
         child: Container(
           child: GestureDetector(
-            onLongPress: () {
-              print('Long press');
+            onVerticalDragStart: (DragStartDetails details){
+              print("start");
+              print(details);
             },
-            onLongPressUp: () {
-              print('Long press relesed');
+            onVerticalDragUpdate: (DragUpdateDetails details){
+              print("update");
+              print(details);
             },
             child: new Image(image: AssetImage("assets/image/download.jpeg")),
           )
