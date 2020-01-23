@@ -45,6 +45,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  int _selectedIndex = 1;
 
   void _incrementCounter() {
     setState(() {
@@ -58,6 +59,12 @@ class _MyHomePageState extends State<MyHomePage> {
   }
   void Test(){
     print("testing");
+  }
+
+  void IndexTapped(int index){
+    setState(() {
+    _selectedIndex = index;
+    });
   }
 
   @override
@@ -87,6 +94,15 @@ class _MyHomePageState extends State<MyHomePage> {
           // in the middle of the parent.
 
           ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(icon: Icon(Icons.business), title: Text("Business")),
+          BottomNavigationBarItem(icon: Icon(Icons.home), title: Text("Home")),
+          BottomNavigationBarItem(icon: Icon(Icons.school), title: Text("School")),
+        ],
+        currentIndex: _selectedIndex,
+        onTap: IndexTapped,
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
