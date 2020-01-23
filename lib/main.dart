@@ -75,54 +75,29 @@ class _MyHomePageState extends State<MyHomePage> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.account_circle),
-            tooltip: "Test",
-            onPressed: Test,
-          )
-        ],
-      ),
-
-      drawer: Drawer(
-        child: Column(
-          children: <Widget>[
-            ListTile(
-              leading: Icon(Icons.exit_to_app),
-              title: Text("Exit"),
-              onTap: (){
-                // change the application state
-                Navigator.pop(context);
-              },
-            )
-          ],
-        ),
-      ),
-
-      body: Center(
-          // Center is a layout widget. It takes a single child and positions it
-          // in the middle of the parent.
-
+    return CustomScrollView(
+      slivers: <Widget>[
+        SliverAppBar(
+          pinned: true,
+          expandedHeight: 50.0,
+          flexibleSpace: FlexibleSpaceBar(
+            title: Text("Epic Silver"),
           ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: Icon(Icons.business), title: Text("Business")),
-          BottomNavigationBarItem(icon: Icon(Icons.home), title: Text("Home")),
-          BottomNavigationBarItem(icon: Icon(Icons.school), title: Text("School")),
-        ],
-        currentIndex: _selectedIndex,
-        onTap: IndexTapped,
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+        ),
+        SliverFixedExtentList(
+          itemExtent: 50.0,
+          delegate: SliverChildBuilderDelegate(
+            (BuildContext context, int index){
+              return Container(
+                alignment: Alignment.center,
+                color: Colors.cyanAccent,
+                child: Text("List Item $index"),
+              );
+            },
+            childCount: 20
+          ),
+        )
+      ],
     );
   }
 }
