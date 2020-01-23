@@ -57,11 +57,11 @@ class _MyHomePageState extends State<MyHomePage> {
       _counter++;
     });
   }
-  void Test(){
+  void test(){
     print("testing");
   }
 
-  void IndexTapped(int index){
+  void indexTapped(int index){
     setState(() {
     _selectedIndex = index;
     });
@@ -84,7 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
           IconButton(
             icon: Icon(Icons.account_circle),
             tooltip: "Test",
-            onPressed: Test,
+            onPressed: test,
           )
         ],
       ),
@@ -101,7 +101,7 @@ class _MyHomePageState extends State<MyHomePage> {
           BottomNavigationBarItem(icon: Icon(Icons.school), title: Text("School")),
         ],
         currentIndex: _selectedIndex,
-        onTap: IndexTapped,
+        onTap: indexTapped,
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
