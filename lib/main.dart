@@ -43,6 +43,8 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
+enum karasuno {hinata,tobio,nishinoya}
+
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   int _selectedIndex = 1;
@@ -50,6 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
   String str = "";
   bool check = false;
   int radioValue = 1;
+  karasuno _selection;
 
   void _incrementCounter() {
     setState(() {
@@ -85,50 +88,32 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Center(
-        child: Row(
-          children: <Widget>[
-            Checkbox(
-              value: check,
-              onChanged: (bool value){
-                print(value);
-                setState(() {
-                  check = value;
-                });
-              },
+        child: PopupMenuButton<karasuno>(
+          onSelected: (karasuno result){
+            print(result);
+            setState(() {
+              _selection = result;
+            });
+
+          },
+          icon: Icon(Icons.add_circle),
+          itemBuilder: (BuildContext context) => <PopupMenuEntry<karasuno>>[
+            const PopupMenuItem<karasuno>(
+              value: karasuno.hinata,
+              child: Text('Middle Blocker'),
             ),
-            Text("Save"),
-            Radio(
-              value: 1,
-              groupValue: radioValue,
-              onChanged: (T){
-                print(T);
-                setState(() {
-                  radioValue = T;
-                });
-              },
+            const PopupMenuItem<karasuno>(
+              value: karasuno.tobio,
+              child: Text('Toser'),
             ),
-            Radio(
-              value: 2,
-              groupValue: radioValue,
-              onChanged: (T){
-                print(T);
-                setState(() {
-                  radioValue = T;
-                });
-              },
-            ),
-            Radio(
-              value: 3,
-              groupValue: radioValue,
-              onChanged: (T){
-                print(T);
-                setState(() {
-                  radioValue = T;
-                });
-              },
+            const PopupMenuItem<karasuno>(
+              value: karasuno.nishinoya,
+              child: Text('Libero'),
             ),
           ],
         ),
+        
+      
       ),
     );
   }
