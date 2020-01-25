@@ -46,6 +46,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   int _selectedIndex = 1;
+  String dropdownList = "Eri";
 
   void _incrementCounter() {
     setState(() {
@@ -80,13 +81,21 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Center(
-        child: RaisedButton(
-          onPressed: buttonClick,
-          color: Colors.deepOrange,
-          child: Text("Click"),
-          textColor: Colors.white,
-          highlightColor: Colors.black,
-
+        child: DropdownButton <String>(
+          value: dropdownList,
+          onChanged: (String newValue){
+            setState(() {
+              dropdownList = newValue;
+              print(dropdownList);
+            });
+          },
+          items: <String> ["Eri","Prawira","Kadarisman"]
+          .map<DropdownMenuItem<String>>((String value){
+            return DropdownMenuItem<String> (
+              value : value,
+              child: Text(value),
+            );
+          }).toList()
         ),
       ),
     );
