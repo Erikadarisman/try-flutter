@@ -48,6 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 1;
   String dropdownList = "Eri";
   String str = "";
+  bool check = false;
 
   void _incrementCounter() {
     setState(() {
@@ -59,13 +60,14 @@ class _MyHomePageState extends State<MyHomePage> {
       _counter++;
     });
   }
-  void buttonClick(){
+
+  void buttonClick() {
     print("testing");
   }
 
-  void indexTapped(int index){
+  void indexTapped(int index) {
     setState(() {
-    _selectedIndex = index;
+      _selectedIndex = index;
     });
   }
 
@@ -82,11 +84,19 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Center(
-        child: TextField(
-          onChanged: (String str){
-            print(str);
-            str = str;
-          },
+        child: Row(
+          children: <Widget>[
+            Checkbox(
+              value: check,
+              onChanged: (bool value){
+                print(value);
+                setState(() {
+                  check = value;
+                });
+              },
+            ),
+            Text("Save")
+          ],
         ),
       ),
     );
