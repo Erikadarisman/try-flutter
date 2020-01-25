@@ -49,6 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
   String dropdownList = "Eri";
   String str = "";
   bool check = false;
+  int radioValue = 1;
 
   void _incrementCounter() {
     setState(() {
@@ -95,7 +96,37 @@ class _MyHomePageState extends State<MyHomePage> {
                 });
               },
             ),
-            Text("Save")
+            Text("Save"),
+            Radio(
+              value: 1,
+              groupValue: radioValue,
+              onChanged: (T){
+                print(T);
+                setState(() {
+                  radioValue = T;
+                });
+              },
+            ),
+            Radio(
+              value: 2,
+              groupValue: radioValue,
+              onChanged: (T){
+                print(T);
+                setState(() {
+                  radioValue = T;
+                });
+              },
+            ),
+            Radio(
+              value: 3,
+              groupValue: radioValue,
+              onChanged: (T){
+                print(T);
+                setState(() {
+                  radioValue = T;
+                });
+              },
+            ),
           ],
         ),
       ),
