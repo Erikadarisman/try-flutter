@@ -57,11 +57,11 @@ class _MyHomePageState extends State<MyHomePage> {
       _counter++;
     });
   }
-  void Test(){
+  void buttonClick(){
     print("testing");
   }
 
-  void IndexTapped(int index){
+  void indexTapped(int index){
     setState(() {
     _selectedIndex = index;
     });
@@ -75,29 +75,20 @@ class _MyHomePageState extends State<MyHomePage> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
-    return CustomScrollView(
-      slivers: <Widget>[
-        SliverAppBar(
-          pinned: true,
-          expandedHeight: 50.0,
-          flexibleSpace: FlexibleSpaceBar(
-            title: Text("Epic Silver"),
-          ),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title),
+      ),
+      body: Center(
+        child: FlatButton(
+          onPressed: buttonClick,
+          color: Colors.deepOrange,
+          child: Text("Click"),
+          textColor: Colors.white,
+          highlightColor: Colors.deepOrangeAccent,
+
         ),
-        SliverFixedExtentList(
-          itemExtent: 50.0,
-          delegate: SliverChildBuilderDelegate(
-            (BuildContext context, int index){
-              return Container(
-                alignment: Alignment.center,
-                color: Colors.cyanAccent,
-                child: Text("List Item $index"),
-              );
-            },
-            childCount: 20
-          ),
-        )
-      ],
+      ),
     );
   }
 }
