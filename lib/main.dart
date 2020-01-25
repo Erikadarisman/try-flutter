@@ -80,12 +80,12 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Center(
-        child: FlatButton(
+        child: RaisedButton(
           onPressed: buttonClick,
           color: Colors.deepOrange,
           child: Text("Click"),
           textColor: Colors.white,
-          highlightColor: Colors.deepOrangeAccent,
+          highlightColor: Colors.black,
 
         ),
       ),
