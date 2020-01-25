@@ -47,6 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   int _selectedIndex = 1;
   String dropdownList = "Eri";
+  String str = "";
 
   void _incrementCounter() {
     setState(() {
@@ -81,21 +82,11 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Center(
-        child: DropdownButton <String>(
-          value: dropdownList,
-          onChanged: (String newValue){
-            setState(() {
-              dropdownList = newValue;
-              print(dropdownList);
-            });
+        child: TextField(
+          onChanged: (String str){
+            print(str);
+            str = str;
           },
-          items: <String> ["Eri","Prawira","Kadarisman"]
-          .map<DropdownMenuItem<String>>((String value){
-            return DropdownMenuItem<String> (
-              value : value,
-              child: Text(value),
-            );
-          }).toList()
         ),
       ),
     );
