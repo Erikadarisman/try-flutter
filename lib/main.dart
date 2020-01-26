@@ -88,12 +88,22 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Center(
-        child: IconButton(
-          icon: Icon(Icons.map),
-          color: Colors.blue,
-          onPressed: (){
-            print("maps");
-          },
+        child: ButtonBar(
+          alignment: MainAxisAlignment.center,
+          children: <Widget>[
+            FlatButton(
+              onPressed: (){
+                
+              },
+              child: Text("Hello"),
+            ),
+            FlatButton(
+              onPressed: (){
+
+              },
+              child: Text("World"),
+            )
+          ],
         ),
       ),
     );
