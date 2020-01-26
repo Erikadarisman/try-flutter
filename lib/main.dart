@@ -43,7 +43,7 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-enum karasuno {hinata,tobio,nishinoya}
+enum karasuno { hinata, tobio, nishinoya }
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
@@ -88,32 +88,13 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Center(
-        child: PopupMenuButton<karasuno>(
-          onSelected: (karasuno result){
-            print(result);
-            setState(() {
-              _selection = result;
-            });
-
+        child: IconButton(
+          icon: Icon(Icons.map),
+          color: Colors.blue,
+          onPressed: (){
+            print("maps");
           },
-          icon: Icon(Icons.add_circle),
-          itemBuilder: (BuildContext context) => <PopupMenuEntry<karasuno>>[
-            const PopupMenuItem<karasuno>(
-              value: karasuno.hinata,
-              child: Text('Middle Blocker'),
-            ),
-            const PopupMenuItem<karasuno>(
-              value: karasuno.tobio,
-              child: Text('Toser'),
-            ),
-            const PopupMenuItem<karasuno>(
-              value: karasuno.nishinoya,
-              child: Text('Libero'),
-            ),
-          ],
         ),
-        
-      
       ),
     );
   }
