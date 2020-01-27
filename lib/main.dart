@@ -55,6 +55,36 @@ class _MyHomePageState extends State<MyHomePage> {
   karasuno _selection;
   double sliderVal = 0;
 
+  DateTime _date = DateTime.now();
+
+  TimeOfDay _time = TimeOfDay.now();
+
+  Future<Null> selectTime(BuildContext context) async {
+    final picked = await showTimePicker(
+      context: context,
+      initialTime: _time
+      
+    );
+    setState(() {
+      _time = picked;
+      print(_time);
+    });
+  }
+
+  Future<Null> selectDate(BuildContext context) async {
+    final DateTime picked = await showDatePicker(
+        context: context,
+        initialDate: _date,
+        firstDate: DateTime(1997),
+        lastDate: DateTime(2022));
+    if (picked != null && picked != _date) {
+      setState(() {
+        _date = picked;
+        print(_date.toString());
+      });
+    }
+  }
+
   void _incrementCounter() {
     setState(() {
       // This call to setState tells the Flutter framework that something has
@@ -89,22 +119,16 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Center(
-        child: Slider(
-          value: sliderVal,
-          onChanged: (double data){
-            setState(() {
-              sliderVal = data;
-              print(sliderVal);
-            });
+        child: IconButton(
+          icon: Icon(Icons.access_time),
+          onPressed: () {
+            selectTime(context);
           },
-          max: 100,
-          min: 0,
-          divisions: 20,
         ),
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.map),
-        onPressed: (){
+        onPressed: () {
           print("float button");
         },
       ),
