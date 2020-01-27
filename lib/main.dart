@@ -53,6 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
   bool check = false;
   int radioValue = 1;
   karasuno _selection;
+  double sliderVal = 0;
 
   void _incrementCounter() {
     setState(() {
@@ -88,14 +89,17 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Center(
-        child: Switch(
-          value: check,
-          onChanged: (bool val){
+        child: Slider(
+          value: sliderVal,
+          onChanged: (double data){
             setState(() {
-              check = val;
-              print(val);
+              sliderVal = data;
+              print(sliderVal);
             });
           },
+          max: 100,
+          min: 0,
+          divisions: 20,
         ),
       ),
       floatingActionButton: FloatingActionButton(
