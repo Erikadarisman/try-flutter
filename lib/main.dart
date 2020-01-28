@@ -44,66 +44,42 @@ class MyHomePage extends StatefulWidget {
 }
 
 enum karasuno { hinata, tobio, nishinoya }
+enum anime { haikyuu, naruto }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-  int _selectedIndex = 1;
-  String dropdownList = "Eri";
-  String str = "";
-  bool check = false;
-  int radioValue = 1;
-  karasuno _selection;
-  double sliderVal = 0;
-
-  DateTime _date = DateTime.now();
-
-  TimeOfDay _time = TimeOfDay.now();
-
-  Future<Null> selectTime(BuildContext context) async {
-    final picked = await showTimePicker(
-      context: context,
-      initialTime: _time
-      
-    );
-    setState(() {
-      _time = picked;
-      print(_time);
-    });
-  }
-
-  Future<Null> selectDate(BuildContext context) async {
-    final DateTime picked = await showDatePicker(
+  Future<void> opDialiog() async {
+    switch (await showDialog(
         context: context,
-        initialDate: _date,
-        firstDate: DateTime(1997),
-        lastDate: DateTime(2022));
-    if (picked != null && picked != _date) {
-      setState(() {
-        _date = picked;
-        print(_date.toString());
-      });
+        builder: (BuildContext context) {
+          return SimpleDialog(
+            title: const Text("Select a anime"),
+            children: <Widget>[
+              SimpleDialogOption(
+                onPressed: () {
+                  Navigator.pop(context, anime.haikyuu);
+                },
+                child: const Text("Anime Haikyuu"),
+              ),
+              SimpleDialogOption(
+                onPressed: () {
+                  Navigator.pop(context, anime.naruto);
+                },
+                child: const Text("Anime naruto"),
+              ),
+            ],
+          );
+        })) {
+      case anime.haikyuu:
+        print("Haikyuu");
+        break;
+      case anime.naruto:
+        print("Narutooo");
+        break;
     }
-  }
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
   }
 
   void buttonClick() {
     print("testing");
-  }
-
-  void indexTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
   }
 
   @override
@@ -120,9 +96,10 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Center(
         child: IconButton(
-          icon: Icon(Icons.access_time),
+          icon: Icon(Icons.movie),
           onPressed: () {
-            selectTime(context);
+            // selectTime(context);
+            opDialiog();
           },
         ),
       ),
