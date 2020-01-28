@@ -47,37 +47,32 @@ enum karasuno { hinata, tobio, nishinoya }
 enum anime { haikyuu, naruto }
 
 class _MyHomePageState extends State<MyHomePage> {
-  Future<void> opDialiog() async {
-    switch (await showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return SimpleDialog(
-            title: const Text("Select a anime"),
-            children: <Widget>[
-              SimpleDialogOption(
-                onPressed: () {
-                  Navigator.pop(context, anime.haikyuu);
-                },
-                child: const Text("Anime Haikyuu"),
-              ),
-              SimpleDialogOption(
-                onPressed: () {
-                  Navigator.pop(context, anime.naruto);
-                },
-                child: const Text("Anime naruto"),
-              ),
-            ],
-          );
-        })) {
-      case anime.haikyuu:
-        print("Haikyuu");
-        break;
-      case anime.naruto:
-        print("Narutooo");
-        break;
-    }
+  Future<void> openAlert() async {
+    return showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context){
+        return AlertDialog(
+          title: Text("Alert"),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text("Alert Alert Alert")
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            FlatButton(
+              child: Text("ok"),
+              onPressed: (){
+                Navigator.of(context).pop();
+              },
+            )
+          ],
+        );
+      }
+    );
   }
-
   void buttonClick() {
     print("testing");
   }
@@ -96,10 +91,10 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Center(
         child: IconButton(
-          icon: Icon(Icons.movie),
+          icon: Icon(Icons.warning),
           onPressed: () {
             // selectTime(context);
-            opDialiog();
+            openAlert();
           },
         ),
       ),
