@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 void main() => runApp(MyApp());
 
@@ -18,9 +19,9 @@ class MyApp extends StatelessWidget {
         // or simply save your changes to "hot reload" in a Flutter IDE).
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.red,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'Epic Page'),
     );
   }
 }
@@ -43,39 +44,8 @@ class MyHomePage extends StatefulWidget {
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-enum karasuno { hinata, tobio, nishinoya }
-enum anime { haikyuu, naruto }
-
 class _MyHomePageState extends State<MyHomePage> {
-  Future<void> openAlert() async {
-    return showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (BuildContext context){
-        return AlertDialog(
-          title: Text("Alert"),
-          content: SingleChildScrollView(
-            child: ListBody(
-              children: <Widget>[
-                Text("Alert Alert Alert")
-              ],
-            ),
-          ),
-          actions: <Widget>[
-            FlatButton(
-              child: Text("ok"),
-              onPressed: (){
-                Navigator.of(context).pop();
-              },
-            )
-          ],
-        );
-      }
-    );
-  }
-  void buttonClick() {
-    print("testing");
-  }
+  final GlobalKey<ScaffoldState> _scaffold = new GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
@@ -86,23 +56,50 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
+      key: _scaffold,
       appBar: AppBar(
+        // Here we take the value from the MyHomePage object that was created by
+        // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
       body: Center(
-        child: IconButton(
-          icon: Icon(Icons.warning),
+        // Center is a layout widget. It takes a single child and positions it
+        // in the middle of the parent.
+        child: RaisedButton(
+          child: Text("Click me"),
           onPressed: () {
-            // selectTime(context);
-            openAlert();
+            final act = CupertinoActionSheet(
+              title: Text("Food Choices"),
+              message: Text("What would you like to eat"),
+              actions: <Widget>[
+                CupertinoActionSheetAction(
+                  child: Text("Pizza"),
+                  onPressed: () {
+                    print("You have selected Pizza");
+                    Navigator.pop(context);
+                  },
+                ),
+                CupertinoActionSheetAction(
+                  child: Text("Cookie Dough"),
+                  onPressed: () {
+                    print("You have selected cookie dough");
+                  },
+                )
+              ],
+              cancelButton: CupertinoActionSheetAction(
+                child: Text("Cancel"),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+            );
+
+            showCupertinoModalPopup(
+                context: context,
+                builder: (BuildContext context) => act
+            );
           },
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.map),
-        onPressed: () {
-          print("float button");
-        },
+        )
       ),
     );
   }
